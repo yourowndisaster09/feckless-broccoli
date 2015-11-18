@@ -28,7 +28,8 @@
 
       this.$get = [
         "$locale",
-        function($locale) {
+        "$rootScope",
+        function($locale, $rootScope) {
           var extend = (function ext(dest, src) {
             for (var k in dest) {
               if (angular.isObject(dest[k])) {
@@ -41,7 +42,10 @@
 
           return {
             set: function(id) {
-              extend($locale, localesCache[id]);
+              if ($locale.id !== id) {
+                extend($locale, localesCache[id]);
+                $rootScope.$broadcast("$dynamicLocaleChange", id);
+              }
             }
           };
         }
