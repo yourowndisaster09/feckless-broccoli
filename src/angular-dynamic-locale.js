@@ -1,3 +1,5 @@
+// https://github.com/yourowndisaster09/feckless-broccoli
+
 ;(function(angular) {
   "use strict";
 
@@ -14,9 +16,9 @@
     }
   };
 
-  angular.module("ubiLocale", []);
+  angular.module("dynLocale", []);
 
-  angular.module("ubiLocale").provider("$dynamicLocale", [
+  angular.module("dynLocale").provider("$dynamicLocale", [
     function() {
       var localesCache = {};
 
@@ -47,7 +49,7 @@
     }
   ]);
 
-  angular.module("ubiLocale").config([
+  angular.module("dynLocale").config([
     "$dynamicLocaleProvider",
     function($dynamicLocaleProvider) {
       names.forEach(function(name) {
@@ -59,4 +61,3 @@
   ]);
 
 })(angular);
-
