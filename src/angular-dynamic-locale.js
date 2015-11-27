@@ -41,10 +41,16 @@
           });
 
           return {
-            set: function(id) {
+            set: function(id, options) {
               if ($locale.id !== id) {
+                options = angular.extend({
+                  notify: true
+                }, options);
+
                 extend($locale, localesCache[id]);
-                $rootScope.$broadcast("$dynamicLocaleChange", id);
+                if (options.notify) {
+                  $rootScope.$broadcast("$dynamicLocaleChange", id);
+                }
               }
             }
           };
